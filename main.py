@@ -25,9 +25,9 @@ headers = {
 class MyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MyMainWindow, self).__init__()
-        self.setupUi(self)
         # self.show_web()
-        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setupUi(self)
         self.display_table.verticalScrollBar().setStyleSheet(
         "QScrollBar:vertical{"        #垂直滑块整体  
           "padding-top:20px;"    #上预留位置（放置向上箭头）  
