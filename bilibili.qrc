@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="main_ico">
+    <file>bilibili.ico</file>
+    <file>background.jpg</file>
+  </qresource>
+</RCC>
