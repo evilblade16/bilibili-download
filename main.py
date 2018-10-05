@@ -1,11 +1,10 @@
-# https://www.bilibili.com/video/av15478453
+﻿# https://www.bilibili.com/video/av15478453
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 import sys,os
 from ui import *
-from ui2 import *
 import time,pyperclip
 import re
 import ssl
@@ -71,9 +70,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
             "QHeaderView::section{background:rgba(0,0,0,0.1); padding-left:4px; border:1px solid white; }"
             # "QHeaderView::section:checked{background-color:green; }"
             )
-        self.display_table.setStyleSheet('''
-
-            ''')
         self.run_dir = os.getcwd()
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.input_url)
@@ -117,18 +113,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
         if re.match(r'^https://www.bilibili.com/video/av',pyperclip.paste()):
             if self.url_edit.text() == "":
                 self.url_edit.setText(pyperclip.paste())    
-
-    def show_web(self):
-        self.dialog = QDialog()
-        self.hlayout = QHBoxLayout()
-        self.browser = MyWebEngineView()
-        self.browser.load(QUrl('https://passport.bilibili.com/login'))
-        self.hlayout.addWidget(self.browser)
-        self.dialog.setLayout(self.hlayout)
-        self.dialog.setWindowTitle("登录")
-        self.dialog.setWindowModality(Qt.ApplicationModal)
-        self.dialog.resize(500,500)
-        self.dialog.show()
 
     def jiexi(self):
         
@@ -212,24 +196,6 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
     def conver_done(self):
         QMessageBox.information(self,'提示','转换成功！！')
 
-class MyWebEngineView(QWebEngineView):
-    def __init__(self, *args, **kwargs):
-        super(MyWebEngineView, self).__init__(*args, **kwargs)
-        # 绑定cookie被添加的信号槽
-        QWebEngineProfile.defaultProfile().cookieStore().cookieAdded.connect(self.onCookieAdd)
-        self.cookies = {}       # 存放cookie字典
-        self.result_cookie = ""
-        self.cookie_true = True
-
-    def onCookieAdd(self, cookie):                       # 处理cookie添加的事件
-        name = cookie.name().data().decode('utf-8')     # 先获取cookie的名字，再把编码处理一下
-        value = cookie.value().data().decode('utf-8')   # 先获取cookie值，再把编码处理一下
-        self.cookies[name] = value                       # 将cookie保存到字典里
-        cookie = self.cookies.get('DedeUserID','')
-        if  cookie:
-            if self.cookie_true:
-                self.cookie_true = False
-                self.result_cookie = cookie
 
 class Workjiexi(QThread):
     """docstring for WorkThread"""

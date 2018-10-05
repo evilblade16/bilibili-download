@@ -70,7 +70,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: none;
+     <string notr="true">border-image: None;
 background-color:rgba(0, 0, 0,0.3);
 font: 10pt &quot;幼圆&quot;;
 
@@ -128,6 +128,21 @@ border-radius:10px;</string>
     <attribute name="verticalHeaderStretchLastSection">
      <bool>false</bool>
     </attribute>
+    <row>
+     <property name="text">
+      <string>New Row</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>New Row</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>New Row</string>
+     </property>
+    </row>
     <column>
      <property name="text">
       <string>选择</string>
@@ -158,6 +173,21 @@ border-radius:10px;</string>
       <string>段落</string>
      </property>
     </column>
+    <item row="1" column="0">
+     <property name="text">
+      <string>2342</string>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>3423</string>
+     </property>
+    </item>
+    <item row="1" column="2">
+     <property name="text">
+      <string>234</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLineEdit" name="url_edit">
     <property name="geometry">
