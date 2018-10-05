@@ -15,6 +15,7 @@ import qdarkstyle
 qdarkstyle.load_stylesheet_pyqt5
 from concurrent.futures import ThreadPoolExecutor
 from collections import Counter 
+from platform import system
 headers = {
 "User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6726.400 QQBrowser/10.2.2265.400",
 "Cookie":"CURRENT_QUALITY=64; DedeUserID=227050458; "
@@ -296,11 +297,17 @@ class Workdownload(QThread):
             del_list = " ".join([j+'.ts' for j in title_name_list])
             del2_list = " ".join([j+'.flv' for j in title_name_list])
             os.system('''ffmpeg -i "concat:%s" -c copy -bsf:a aac_adtstoasc -movflags +faststart %s.mp4'''%(add_list,title))
-            os.system('''del %s %s''' % (del_list,del2_list))
-            print('''del %s %s''' % (del_list,del2_list))
+            if 'windows' in system().lower():
+                os.system('''del %s %s''' % (del_list,del2_list))
+            else:
+                os.system('''rm -f %s %s''' % (del_list,del2_list))
+
         elif c[title] == 1:    
             os.system('''ffmpeg -i %s.flv -c copy -bsf:a aac_adtstoasc -movflags +faststart %s.mp4'''%(title+"__1",title))
-            os.system('''del %s.flv''' % (title+"__1"))
+            if 'windows' in system().lower():
+                os.system('''del %s.flv''' % (title+"__1"))
+            else:
+                os.system('''rm -f %s.flv''' % (title+"__1"))
         os.chdir(run_dir)
 
     def report(self,count, blockSize, totalSize):
