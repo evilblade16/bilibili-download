@@ -1,1 +1,0 @@
-pyrcc5 -o bilibili_rc.py bilibili.qrc
