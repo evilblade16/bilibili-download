@@ -5,5 +5,6 @@ PyQt5 python3
 ## 运行
 `
 python main.py
-`
-
+`   
+![1](./img/1.png)
+![2](./img/2.png)

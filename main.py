@@ -90,6 +90,7 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
         self.list_ = []
         self.title = ''
+        self.m_flag=False
 
     def mousePressEvent(self, event):
         x = (event.globalPos()-self.pos()).x()
