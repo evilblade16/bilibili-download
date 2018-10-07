@@ -2,7 +2,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from PyQt5.QtWebEngineWidgets import *
 import sys,os
 from ui import *
 import time,pyperclip
@@ -11,8 +10,6 @@ import ssl
 import urllib.request
 import requests
 import threading
-import qdarkstyle
-qdarkstyle.load_stylesheet_pyqt5
 from concurrent.futures import ThreadPoolExecutor
 from collections import Counter 
 from platform import system
@@ -112,10 +109,13 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
 
     def input_url(self):
-        if re.match(r'^https://www.bilibili.com/video/av',pyperclip.paste()):
-            if self.url_edit.text() == "":
-                self.url_edit.setText(pyperclip.paste())    
+        try:
+            if re.match(r'^https://www.bilibili.com/video/av',pyperclip.paste()):
+                if self.url_edit.text() == "":
+                    self.url_edit.setText(pyperclip.paste())    
 
+        except Exception as e:
+            print()
     def jiexi(self):
         
         self.list_ = []
